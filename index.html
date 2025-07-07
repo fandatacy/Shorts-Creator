@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Daily Shorts Generator</title>
+  <style>
+    body { background: #121212; color: #FFA500; font-family: sans-serif; padding: 20px; }
+    input, button { padding: 10px; margin: 10px 0; border-radius: 5px; border: none; }
+    button { background: #FFA500; color: #000; font-weight: bold; cursor: pointer; }
+    textarea { width: 100%; height: 200px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>🎬 Daily Shorts Idea Generator</h1>
+  <form method="post">
+    <input type="text" name="niche" placeholder="Enter niche (e.g. history, science...)" required />
+    <button type="submit">🔍 Generate Ideas</button>
+  </form>
+
+  {% if topics %}
+    <h2>🧠 5 Fresh Ideas for "{{ niche }}"</h2>
+    <pre style="white-space: pre-wrap;">{{ topics }}</pre>
+
+    <form method="post" action="/script">
+      <input type="text" name="title" placeholder="Paste a title to get script" required />
+      <button type="submit">📝 Generate Script</button>
+    </form>
+  {% endif %}
+
+  {% if script %}
+    <h2>🎤 Shorts Script for: "{{ title }}"</h2>
+    <textarea readonly>{{ script }}</textarea>
+  {% endif %}
+</body>
+</html>
